@@ -1,47 +1,54 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { json } from 'stream/consumers';
 interface DetailsSchema{
     firstname: string,
     lastname: string,
-    age: number,
-    school: string,
+    phonenumber: string,
+    gender: string,
+    address: string,
     email: string
 }
 @Component({
   selector: 'app-landingpage',
   standalone: true,
-  imports: [],
+  imports: [ FormsModule,CommonModule ],
   templateUrl: './landingpage.component.html',
   styleUrl: './landingpage.component.css'
 })
 export class LandingpageComponent {
-  public name: string = 'SQI';
-  private school: string = 'LAUTECH';
-  public ages: number = 20;
-  public isAdmin: boolean = false;
-  public obj:DetailsSchema = {
-    firstname: 'John',
-    lastname: 'Lee',
-    age: 20,
-    school: 'LAUTECH',
-    email: 'toye@gmail.com'
-  }
-
-
-  public age: number | string = 20;
-  public nickname: undefined | string
-  public email: undefined | string
+  public styles = "text-danger"
+  public first_name = "";
+  public last_name = "";
+  public email = "";
+  public phone_number = "";
+  public address = "";
+  public gender = "";
+  public details: DetailsSchema[] = [];
   
-  ngOnInit() {
-    console.log(this.name, this.school, this.ages, this.isAdmin);
-    this.age = 'Fourteen';
-    this.nickname = 'SQI';
-    console.log(this.age, this.nickname);
-    console.log(this.email);
-    this.email = 'sqi@gmail.com';
-    console.log(this.email);
-  }
+  addContent() {
+    if (localStorage.getItem("details")) {
+      this.details = JSON.parse(localStorage.getItem("details") || '{}');
+    } else {
+      this.details = [];
+    }
+    if (this.first_name != "" && this.last_name != "" && this.email != "" && this.phone_number != "" && this.address != "" && this.gender != "")
+    { 
+      let contactobj: DetailsSchema = {
+        firstname: this.first_name,
+        lastname: this.last_name,
+        email: this.email,
+        phonenumber: this.phone_number,
+        address: this.address,
+        gender: this.gender
+      }
+      this.details.push(contactobj);
+      console.log(this.details);
+      localStorage.setItem("details", JSON.stringify(this.details));
 
-  myname() { 
-    console.log(this.school);
+      
+    }
   }
 }
+
