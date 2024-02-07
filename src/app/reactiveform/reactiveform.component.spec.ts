@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LandingpageComponent } from './landingpage.component';
 
-describe('LandingpageComponent', () => {
-  let component: LandingpageComponent;
-  let fixture: ComponentFixture<LandingpageComponent>;
+import { ReactiveformComponent } from './reactiveform.component';
+
+describe('ReactiveformComponent', () => {
+  let component: ReactiveformComponent;
+  let fixture: ComponentFixture<ReactiveformComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LandingpageComponent]
+      imports: [ReactiveformComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(LandingpageComponent);
+    fixture = TestBed.createComponent(ReactiveformComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

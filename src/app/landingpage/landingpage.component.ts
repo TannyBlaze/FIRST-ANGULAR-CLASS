@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { json } from 'stream/consumers';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
+
 interface DetailsSchema{
     firstname: string,
     lastname: string,
@@ -13,11 +15,12 @@ interface DetailsSchema{
 @Component({
   selector: 'app-landingpage',
   standalone: true,
-  imports: [ FormsModule,CommonModule ],
+  imports: [ FormsModule,CommonModule,RouterLink ],
   templateUrl: './landingpage.component.html',
   styleUrl: './landingpage.component.css'
 })
 export class LandingpageComponent {
+  constructor(public activated: ActivatedRoute, public routes:Router) {}
   public styles = "text-danger"
   public first_name = "";
   public last_name = "";
@@ -46,9 +49,13 @@ export class LandingpageComponent {
       this.details.push(contactobj);
       console.log(this.details);
       localStorage.setItem("details", JSON.stringify(this.details));
-
-      
     }
+  }
+  del(i: number){
+    let x = this.details.filter((item, index) => index !== i)
+    console.log(x);
+    this.details = x
+    localStorage.setItem("details", JSON.stringify(this.details));  
   }
 }
 

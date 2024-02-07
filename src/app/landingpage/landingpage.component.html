@@ -60,8 +60,8 @@
         </tr>
     </thead>
     <tbody class="text-center">
-        <tr *ngFor="let item of this.details, let id = index">
-            <td>{{id + 1}}</td>
+        <tr *ngFor="let item of this.details, let i = index">
+            <td>{{i + 1}}</td>
             <td>{{item.firstname}}</td>
             <td>{{item.lastname}}</td>
             <td>{{item.email}}</td>
@@ -69,9 +69,9 @@
             <td>{{item.address}}</td>
             <td>{{item.gender}}</td>
             <td>
-                <button class="btn btn-primary">View</button>
+                <button class="btn btn-primary" routerLink="/dashboard/{{i}}">View</button>
                 <button class="btn btn-success">Edit</button>
-                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-danger" (click)="del(i)">Delete</button>
             </td>
         </tr>
     </tbody>
