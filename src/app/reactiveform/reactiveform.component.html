@@ -1,1 +1,36 @@
-<p>reactiveform works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-8 mx-auto">
+            <h1 class="text-center">Reactive Form</h1>
+            <form [formGroup]="formone">
+                <div class="mb-4">
+                    <input type="text" class="form-control" placeholder="Firstname" formControlName="firstname"
+                        [class.is-valid]="formone.get('firstname')?.valid && formone.get('firstname')?.dirty"
+                        [class.is-invalid]="formone.get('firstname')?.invalid && formone.get('firstname')?.dirty">
+                    <div *ngIf="formone.get('firstname')?.invalid && formone.get('firstname')?.dirty">
+                        <span *ngIf="formone.get('firstname')?.errors?.['required']">Required</span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <input type="email" class="form-control" placeholder="Email" formControlName="email"
+                        [class.is-valid]="formone.get('email')?.valid && formone.get('email')?.dirty"
+                        [class.is-invalid]="formone.get('email')?.invalid && formone.get('email')?.dirty">
+                    <div *ngIf="formone.get('email')?.invalid && formone.get('email')?.dirty">
+                        <span *ngIf="formone.get('email')?.errors?.['required']">Required</span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <input type="password" class="form-control" placeholder="Password" formControlName="password"
+                        [class.is-valid]="formone.get('password')?.valid && formone.get('password')?.dirty"
+                        [class.is-invalid]="formone.get('password')?.invalid && formone.get('password')?.dirty">
+                    <div *ngIf="formone.get('password')?.invalid && formone.get('password')?.dirty">
+                        <span *ngIf="formone.get('password')?.errors?.['required']">Required</span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <input type="button" class="form-control btn btn-primary" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
